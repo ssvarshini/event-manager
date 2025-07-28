@@ -1,0 +1,281 @@
+/*Custom styling*/
+/*Colors*/
+:root {
+  --primary-color: #2e8ae1;
+  --accent-color: #F39237;
+  --text-color: #222222;
+  --light-bg: #f9f9f9;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  --radius: 10px;
+  --font-size-base: 1rem;
+}
+
+/*Body styling*/
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-color);
+  background-color: #fefefe;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/*Styling for the buttons used*/
+.btn {
+  padding: 15px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease;
+  color: white;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-radius: 20px;
+}
+
+.btn-primary:hover {
+  background-color: #60cde5;
+}
+
+.btn-primary1 {
+  background-color: var(--accent-color);
+  border-radius: 20px;
+  color: white;
+}
+
+.btn-primary1:hover {
+  background-color: #fa8704;
+  color: black;
+}
+
+/*Creating a card for the main home page*/
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+/*Main card in the home page*/
+.home-card {
+  background-color: var( --light-bg);
+  color: #000;
+  padding: 50px 60px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 800px;
+  height: 280px;
+  margin: 60px auto 0 auto;
+}
+
+/*The mini card about website*/
+.info-card {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 40px 20px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  width: 280px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+}
+
+.info-card:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-5px);
+}
+  
+.info-card i {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+/*Attendee home page*/
+/* Card styles for each event*/
+.event-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+  background-color: #fff;
+  border: 2px solid  var(--primary-color);
+}
+
+/*Border between sections*/
+.attendee-upcoming-container h3 {
+  border-bottom: 2px solid #2e8ae1;
+  padding-bottom: 0.5rem;
+}
+
+/*Hover effect*/
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+/*font*/
+.event-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/*badge for the date and time*/
+.event-card .badge.details {
+  font-size: 0.95rem;
+  background-color: var(--primary-color);
+}
+
+ 
+/*Custom btn*/
+.btn-accent {
+  background-color: #2e8ae1;
+  color: white;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  padding: 4px 12px;     
+  font-size: 0.9rem;     
+  line-height: 2;   
+  width: 250px;  
+}
+
+/*Hover effect*/
+.btn-accent:hover {
+  background-color: #63aff6;
+}
+
+/*styling for the header*/
+.attendee-upcoming-container {
+  background-color: #e6f2ff; 
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/*styling for the badges*/
+.badge.badge-full {
+  background-color: #45aeb0;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.badge.badge-concession {
+  background-color: var(--accent-color);;
+  color: white;
+  font-size: 0.95rem;
+}
+
+/*organiser home page*/
+/*header styling*/
+.dashboard-header {
+  background: linear-gradient(to right, #2e8ae1, #6db3f2);
+  color: white;
+  padding: 2rem 2rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/*font*/
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/*font*/
+.dashboard-header p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+/*btn in the header*/
+.dashboard-header .btn {
+  margin: 0 0.75rem; 
+  margin-bottom: 0.5rem; 
+}
+
+/*styling for the card containing each event*/
+.eventsection {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background-color: #fff;
+  border-left: 4px solid #2e8ae1;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/*Hover effect*/
+.eventsection:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+/*Styling for the published card*/
+.card-published {
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(to bottom right, #eaf4fc, #d7eafc);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.15);
+}
+
+/*Styling for the published card*/
+.card-draft {
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(to bottom right, #fdf0ed, #fde1dc);
+  box-shadow: 0 6px 16px rgba(237, 106, 90, 0.15);
+}
+
+/*Font*/
+.card-header h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-left: 5px solid #2e8ae1;
+  padding-left: 0.75rem;
+}
+
+/*All Header for the pages*/
+.banner {
+  background: linear-gradient(to right, #2e8ae1, #6db3f2);
+  color: white;
+  padding: 2rem 2rem;      
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/*Font*/
+.banner h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+/*Font*/
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+/*Name and description of the website for both the organiser and attendee*/
+.siteInfo {
+  text-align: center;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}

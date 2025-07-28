@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Site Settings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/main.css" />
+</head>
+<body class="bg-light">
+  <!--Page Banner with navigation-->
+  <div class="banner text-center">
+    <h1 class="mb-4">Site Settings</h1>
+    <a href="/organiser" class="btn btn-primary1 ms-2">Back To Home Page</a>
+  </div>
+
+  <div class="container py-5">
+    <div class="card shadow p-4">
+      <!--Settings Form-->
+      <form action="/organiser/settings" method="POST">
+        <div class="mb-3">
+          <!--Site Name Input field-->
+          <label for="name" class="form-label">Site Name:</label>
+          <input type="text" id="name" name="name" class="form-control" value="<%= settings.name %>" required>
+        </div>
+
+         <!--Site description Input field-->
+        <div class="mb-3">
+          <label for="description" class="form-label">Site Description:</label>
+          <textarea id="description" name="description" class="form-control" rows="4" required><%= settings.description %></textarea>
+        </div>
+
+        <!--Button to submit and save the changes-->
+        <button type="submit" class="btn btn-primary">Save Settings</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

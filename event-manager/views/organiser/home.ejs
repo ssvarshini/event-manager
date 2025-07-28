@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Organiser Home Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body class="bg-light">
+
+  <!--Page Banner with navigation-->
+  <div class="dashboard-header">
+    <h1 class="mb-2 fw-bold">Organiser Home</h1>
+     <!--Title and description of the site-->
+     <div class="siteInfo mb-4">
+      <h4 class="mb-1"><%= settings.name %></h4>
+      <p class="mt-0"><%= settings.description %></p>
+    </div>    
+    <!--Buttons for main home page, creating new event, settings, viewing bookings and log out-->
+    <a href="/" class="btn btn-primary1">Home Page</a>
+    <a href="/organiser/events/create" class="btn btn-primary1">Create New Event</a>
+    <a href="/organiser/settings" class="btn btn-primary1">Site Settings</a>
+    <a href="/organiser/bookings" class="btn btn-primary1">Bookings</a>
+    <form action="/organiser/logout" method="GET" class="d-inline">
+      <button type="submit" class="btn btn-outline-danger">Log Out</button>
+    </form>
+  </div>
+
+  <div class="container py-5">
+
+   <!--Published Events Card-->
+    <div class="card mb-5 card-published">
+      <div class="card-header text-black pt-5 pb-4">
+        <h4 class="mb-0">Published Events</h4>
+      </div>
+      <div class="card-body">
+        <!--If no events are published-->
+        <% if (published.length === 0) { %>
+          <div class="alert alert-warning">No published events yet.</div>
+        <% } %>
+         <!--Loop through each published event-->
+        <% published.forEach(event => { %>
+          <div class="mb-4 ps-3 rounded eventsection">
+            <div class="card-body">
+              <!--Event Title and description-->
+              <h4 class="card-title text-primary"><%= event.title %></h4>
+              <p class="card-text"><%= event.description %></p>
+  
+              <!--Event date and time-->
+              <div class="mb-2 text-muted">
+                Date: <%= event.event_date %> | Time: <%= event.event_time %> <br />
+                Created: <%= event.created_at %> <br />
+                Published: <%= event.published_at %>
+              </div>
+  
+              <!--Ticket Info Block-->
+              <% 
+                const ticketDetails = [];
+  
+                if (event.tickets_full_total > 0) {
+                  ticketDetails.push(`Full Priced: ${event.tickets_full} / ${event.tickets_full_total} (£${event.price_full.toFixed(2)})`);
+                }
+                if (event.tickets_concession_total > 0) {
+                  ticketDetails.push(`Concession Priced: ${event.tickets_concession} / ${event.tickets_concession_total} (£${event.price_concession.toFixed(2)})`);
+                }
+              %>
+              <!--Display available ticket information or if no ticket is available-->
+              <% if (ticketDetails.length > 0) { %>
+                <div class="mb-2"><strong>Tickets:</strong> <%= ticketDetails.join(" | ") %></div>
+              <% } else { %>
+                <div class="text-danger">No tickets listed.</div>
+              <% } %>
+  
+              <!--Action Buttons-->
+              <!--The share button to bring to the attendee eb=vent page-->
+              <a href="/attendee/events/<%= event.id %>" class="btn btn-primary1 btn-sm" target="_blank">Share Link</a>
+              <form action="/organiser/events/<%= event.id %>/delete" method="POST" class="d-inline">
+                <!--The delete button to delete an published eveent-->
+                <button type="submit" class="btn btn-danger btn-sm ms-2">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  
+    <!-- Draft Events Card -->
+    <div class="card mb-5 card-draft">
+      <div class="card-header text-black pt-5 pb-4">
+        <h4 class="mb-0">Draft Events</h4>
+      </div>
+      <div class="card-body">
+        <!--If no events are in draft-->
+        <% if (drafts.length === 0) { %>
+          <div class="alert alert-info">No draft events yet.</div>
+        <% } %>
+        <!--Loop through each draft event-->
+        <% drafts.forEach(event => { %>
+          <div class="mb-4 ps-3 rounded eventsection">
+            <div class="card-body">
+              <!--Event Title and description-->
+              <h4 class="card-title text-dark"><%= event.title %></h4>
+              <p class="card-text"><%= event.description %></p>
+  
+               <!--Event date and time-->
+              <div class="mb-2 text-muted">
+                <i class="fa-solid fa-calendar-day me-1"></i> <%= event.event_date %> |
+                <i class="fa-solid fa-clock me-1"></i> <%= event.event_time %>
+              </div>
+
+               <!--Created date, modified and published date for the events-->
+              <div class="mb-2 text-muted">
+                Created: <%= event.created_at %>
+                <% if (event.updated_at) { %> | Modified: <%= event.updated_at %> <% } %>
+                <% if (event.published_at) { %> | Published: <%= event.published_at %> <% } %>
+              </div>
+  
+               <!--Ticket Info Block for available tickets and no tickets-->
+              <% 
+                const ticketDetails = [];
+                if (event.tickets_full_total > 0) {
+                  ticketDetails.push(`Standard: ${event.tickets_full_total} (£${event.price_full.toFixed(2)})`);
+                }
+                if (event.tickets_concession_total > 0) {
+                  ticketDetails.push(`Concession: ${event.tickets_concession_total} (£${event.price_concession.toFixed(2)})`);
+                }
+              %>
+              <!--Display ticket information-->
+              <% if (ticketDetails.length > 0) { %>
+                <div class="mb-2"><strong>Tickets:</strong> <%= ticketDetails.join(" | ") %></div>
+              <% } else { %>
+                <div class="text-danger">No tickets listed.</div>
+              <% } %>
+  
+              <!--Action Buttons-->
+              <!--The edit button to edit the eb=vents-->
+              <a href="/organiser/events/<%= event.id %>/edit" class="btn btn-primary1 btn-sm">Edit</a>
+              <form action="/organiser/events/<%= event.id %>/publish" method="POST" class="d-inline">
+                <!--The publish button to publish events-->
+                <button type="submit" class="btn btn-primary1 btn-sm ms-2">Publish</button>
+              </form>
+              <!--The delete button button to delete events-->
+              <form action="/organiser/events/<%= event.id %>/delete" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger btn-sm ms-2">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  
+  </div>
+</body>
+</html>
